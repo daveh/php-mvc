@@ -1,6 +1,9 @@
 # Remove the question mark from the request but maintain the query string
 RewriteEngine On
-RewriteBase /
+
+# Uncomment the following line if your public folder isn't the web server's root
+# RewriteBase /
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
