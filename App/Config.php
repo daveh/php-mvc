@@ -1,42 +1,10 @@
 <?php
 
-namespace App;
+return [
 
-/**
- * Application configuration
- *
- * PHP version 7.0
- */
-class Config
-{
-
-    /**
-     * Database host
-     * @var string
-     */
-    const DB_HOST = 'your-database-host';
-
-    /**
-     * Database name
-     * @var string
-     */
-    const DB_NAME = 'your-database-name';
-
-    /**
-     * Database user
-     * @var string
-     */
-    const DB_USER = 'your-database-user';
-
-    /**
-     * Database password
-     * @var string
-     */
-    const DB_PASSWORD = 'your-database-password';
-
-    /**
-     * Show or hide error messages on screen
-     * @var boolean
-     */
-    const SHOW_ERRORS = true;
-}
+    'DB_HOST' => getenv('DB_HOST'),
+    'DB_NAME' => getenv('DB_NAME'),
+    'DB_USER' => getenv('DB_USER'),
+    'DB_PASSWORD' => getenv('DB_PASSWORD'),
+    'DB_NAME' => getenv('DB_NAME'),
+];
