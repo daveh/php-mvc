@@ -11,6 +11,11 @@
  */
 require dirname(__DIR__) . '/vendor/autoload.php';
 
+/**
+ * Load .env vars
+ */
+$dotenv = new \Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
 /**
  * Error and Exception handling
