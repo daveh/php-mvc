@@ -19,6 +19,11 @@ error_reporting(E_ALL);
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
+/**
+ * Load .env vars
+ */
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__FILE__)));
+$dotenv->load();
 
 /**
  * Routing
