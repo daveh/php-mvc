@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "vlucas/phpdotenv": "^4.1"
     },
     "autoload": {
         "psr-4": {
