@@ -114,12 +114,19 @@ class Router
             if (class_exists($controller)) {
                 $controller_object = new $controller($this->params);
 
-                $action = $this->params['action'];
+                $action = (isset($this->params['action']) && $this->params['action']) ? $this->params['action'] : "index";
+                
                 $action = $this->convertToCamelCase($action);
 
                 if (preg_match('/action$/i', $action) == 0) {
-                    $controller_object->$action();
-
+                    if (isset($this->params['args'])) {
+                        
+                        // TODO: protect arguments against special characters?
+                        $args = explode("/", $this->params['args']);
+                        call_user_func_array(array($controller_object, $action), $args);
+                    } else {
+                        $controller_object->$action();
+                    }
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                 }

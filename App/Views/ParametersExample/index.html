@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <h1>Parameters</h1>
+    
+    <p><b>Specific Parameters:</b> You can keep all your calls with router specified at \Core\Router.php  </p>
+    <p><b>Generic Parameters:</b> With a generic router now you can just create your methods with parameters, and call methodos separated by "/".</p>
+    
+    <p>Parameters Examples</p>
+    <ul>
+        <li><a href="/parametersExample/one/123456">One Parameter Example</a></li>
+        <li><a href="/parametersExample/two/active/warning">Two Parameters Example</a></li>
+        <li><a href="/parametersExample/two/inactive">Two Parameters Example, but second as method default</a></li>
+    </ul>
+
+{% endblock %}
