@@ -31,7 +31,10 @@ class Router
      * @return void
      */
     public function add($route, $params = [])
-    {
+    {   
+        // Check if the route is end with '/', if it is not append '/' at the end
+        (substr_compare( $route, '/', -1 ) === 0) ? $route = $route : $route .= '/';
+
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
 
