@@ -1,3 +1,5 @@
+logs
+!logs/.keep
 vendor
 
 composer.lock
