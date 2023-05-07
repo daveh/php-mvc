@@ -25,7 +25,11 @@ class View
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
 
         if (is_readable($file)) {
-            return require $file;
+            ob_start();
+            require $file;
+            $ob_contents = ob_get_contents();
+            ob_end_clean();
+            return $ob_contents;
         } else {
             throw new \Exception("$file not found");
         }

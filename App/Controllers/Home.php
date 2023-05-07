@@ -19,9 +19,32 @@ class Home extends \Core\Controller
      */
     public function indexAction($params)
     {
-        $args = [
+        $mainArgs = [
             'title' => 'Fixed navbar',
+            'description' => 'Fixed navbar: Bootstrap 4 example template',
+            'author' => 'Twitter',
+            'menu' => [
+                [
+                    'title' => 'Home',
+                    'class' => 'active',
+                    'href' => '#',
+                ],
+                [
+                    'title' => 'Link',
+                    'class' => null,
+                    'href' => '#',
+                ],
+                [
+                    'title' => 'Disabled',
+                    'class' => 'disabled',
+                    'href' => '#',
+                ],
+            ],
         ];
-        View::render('bootstrap.phtml', $args);
+        $bootstrapArgs = [
+            'navbar' => View::render('navbar.phtml', $mainArgs),
+            'main' => View::render('Home/index.phtml', $mainArgs),
+        ];
+        echo View::render('bootstrap.phtml', $mainArgs + $bootstrapArgs);
     }
 }
