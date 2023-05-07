@@ -6,6 +6,8 @@
  * PHP version 7.0
  */
 
+ if (!ob_start('ob_gzhandler')) ob_start();
+
 /**
  * Composer
  */
