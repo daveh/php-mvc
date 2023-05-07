@@ -19,6 +19,9 @@ class Home extends \Core\Controller
      */
     public function indexAction($params)
     {
-        View::renderTemplate('Home/index.html');
+        $args = [
+            'title' => 'Fixed navbar',
+        ];
+        View::render('bootstrap.phtml', $args);
     }
 }
