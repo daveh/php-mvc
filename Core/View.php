@@ -16,7 +16,7 @@ class View
      * @param string $view  The view file
      * @param array $args  Associative array of data to display in the view (optional)
      *
-     * @return void
+     * @return string
      */
     public static function render($view, $args = [])
     {
@@ -25,7 +25,7 @@ class View
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
 
         if (is_readable($file)) {
-            require $file;
+            return require $file;
         } else {
             throw new \Exception("$file not found");
         }
@@ -37,7 +37,7 @@ class View
      * @param string $template  The template file
      * @param array $args  Associative array of data to display in the view (optional)
      *
-     * @return void
+     * @return string
      */
     public static function renderTemplate($template, $args = [])
     {
@@ -48,6 +48,6 @@ class View
             $twig = new \Twig\Environment($loader);
         }
 
-        echo $twig->render($template, $args);
+        return $twig->render($template, $args);
     }
 }

@@ -95,7 +95,7 @@ protected function after()
 Views are used to display information (normally HTML). View files go in the `App/Views` folder. Views can be in one of two formats: standard PHP, but with just enough PHP to show the data. No database access or anything like that should occur in a view file. You can render a standard PHP view in a controller, optionally passing in variables, like this:
 
 ```php
-View::render('Home/index.php', [
+echo View::render('Home/index.php', [
     'name'    => 'Dave',
     'colours' => ['red', 'green', 'blue']
 ]);
@@ -104,7 +104,7 @@ View::render('Home/index.php', [
 The second format uses the [Twig](http://twig.sensiolabs.org/) templating engine. Using Twig allows you to have simpler, safer templates that can take advantage of things like [template inheritance](http://twig.sensiolabs.org/doc/templates.html#template-inheritance). You can render a Twig template like this:
 
 ```php
-View::renderTemplate('Home/index.html', [
+echo View::renderTemplate('Home/index.html', [
     'name'    => 'Dave',
     'colours' => ['red', 'green', 'blue']
 ]);
