@@ -9,7 +9,13 @@ namespace Core;
  */
 class Router
 {
-
+    /**
+     * Request URI index constants
+     */
+    const CONTROLLER_URI_INDEX = 1;
+    const ACTION_URI_INDEX = 2;
+    const ID_URI_INDEX = 3;
+    
     /**
      * Associative array of routes (the routing table)
      * @var array
@@ -128,6 +134,58 @@ class Router
             }
         } else {
             throw new \Exception('No route matched.', 404);
+        }
+    }
+
+    /**
+     * Dispatch the request URI, creating the controller object
+     * and running the action method with id and other params.
+     * An automatic routing without using routing table
+     *
+     * Request URI format:
+     * [/controller[/action[/id]]][?param1=value1[&param2=value2...]]
+     *
+     * @param string|null $requestUri The request URI
+     * 
+     * @return void
+     */
+    public function dispatchRequest($requestUri = null)
+    {
+        // Parse request URI
+        $requestUri = $requestUri ?? $_SERVER['REQUEST_URI'];
+        [$request, $query] = strpos($requestUri, '?') === false ? [$requestUri, ''] : explode('?', $requestUri);
+        $request = strpos($request, '/') === false ? [] : explode('/', $request);
+        $queryParams = [];
+        parse_str($query, $queryParams);
+
+        // Dispatch request
+        $controller = !empty($request[self::CONTROLLER_URI_INDEX]) ? $request[self::CONTROLLER_URI_INDEX] : \App\Config::DEFAULT_CONTROLLER;
+        $controller = $this->convertToStudlyCaps($controller);
+        $this->params['controller'] = $controller;
+        $controller = $this->getNamespace() . $controller;
+        $action = !empty($request[self::ACTION_URI_INDEX]) ? $request[self::ACTION_URI_INDEX] : \App\Config::DEFAULT_ACTION;
+        $action = $this->convertToCamelCase($action);
+        $this->params['action'] = $action;
+        if ($id = $request[self::ID_URI_INDEX] ?? null) {
+            if (array_key_exists('id', $queryParams)) {
+                $queryParams['id'] = $id;
+            } else {
+                $queryParams = ['id' => $id] + $queryParams;
+            }
+        }
+        $this->params['id'] = $id;
+        $this->params['queryParams'] = $queryParams;
+
+        if (class_exists($controller)) {
+            $controller_object = new $controller($this->params);
+
+            if (preg_match('/action$/i', $action) == 0) {
+                $controller_object->$action($queryParams);
+            } else {
+                throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+            }
+        } else {
+            throw new \Exception("Controller class $controller not found");
         }
     }
 

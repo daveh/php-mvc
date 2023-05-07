@@ -47,6 +47,11 @@ You can also specify a namespace for the controller:
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 ```
 
+Another way - an automatic routing without using routing table:
+```php
+$router->dispatchRequest($_SERVER['REQUEST_URI']); die;
+```
+
 ## Controllers
 
 Controllers respond to user actions (clicking on a link, submitting a form etc.). Controllers are classes that extend the [Core\Controller](Core/Controller.php) class.

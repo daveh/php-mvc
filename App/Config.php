@@ -35,6 +35,18 @@ class Config
     const DB_PASSWORD = 'your-database-password';
 
     /**
+     * Default controller value
+     * @var string
+     */
+    const DEFAULT_CONTROLLER = 'Home';
+
+    /**
+     * Default action value
+     * @var string
+     */
+    const DEFAULT_ACTION = 'index';
+
+    /**
      * Show or hide error messages on screen
      * @var boolean
      */

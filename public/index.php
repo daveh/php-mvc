@@ -25,6 +25,9 @@ set_exception_handler('Core\Error::exceptionHandler');
  */
 $router = new Core\Router();
 
+// Uncomment the next line for an automatic routing without using routing table
+//$router->dispatchRequest($_SERVER['REQUEST_URI']); die;
+
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('{controller}/{action}');
