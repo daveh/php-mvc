@@ -1,32 +1,33 @@
 <?php
 
-/**
- * Front controller
- *
- * PHP version 7.0
- */
+declare(strict_types=1);
 
-/**
- * Composer
- */
-require dirname(__DIR__) . '/vendor/autoload.php';
+define("ROOT_PATH", dirname(__DIR__));
 
+spl_autoload_register(function (string $class_name) {
 
-/**
- * Error and Exception handling
- */
-error_reporting(E_ALL);
-set_error_handler('Core\Error::errorHandler');
-set_exception_handler('Core\Error::exceptionHandler');
+    require ROOT_PATH . "/src/" . str_replace("\\", "/", $class_name) . ".php";
 
+});
 
-/**
- * Routing
- */
-$router = new Core\Router();
+$dotenv = new Framework\Dotenv;
 
-// Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('{controller}/{action}');
-    
-$router->dispatch($_SERVER['QUERY_STRING']);
+$dotenv->load(ROOT_PATH . "/.env");
+
+set_error_handler("Framework\ErrorHandler::handleError");
+
+set_exception_handler("Framework\ErrorHandler::handleException");
+
+$router = require ROOT_PATH . "/config/routes.php";
+
+$container = require ROOT_PATH . "/config/services.php";
+
+$middleware = require ROOT_PATH . "/config/middleware.php";
+
+$dispatcher = new Framework\Dispatcher($router, $container, $middleware);
+
+$request = Framework\Request::createFromGlobals();
+
+$response = $dispatcher->handle($request);
+
+$response->send();
