@@ -8,8 +8,8 @@ That course explains how the framework is put together, building it step-by-step
 
 If not, please look at the example code in the [config](config) and [src/App](src/App) folders for examples of how to use it.
 
-[!IMPORTANT]
-This framework was developed as a *teaching example* on the aforementioned course. The idea is that by developing this framework on that course, you'll understand how frameworks like Laravel work. For more details please see the [licence](LICENSE).
+## DISCLAIMER
+This framework was developed as a **teaching example** on the aforementioned course. The idea is that by developing this framework on that course, you'll understand how frameworks like Laravel work. No warranty is provided. For more details please see the [licence](LICENSE).
 
 ## Starting an Application using this Framework
 
