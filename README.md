@@ -18,4 +18,6 @@ This framework was developed as a **teaching example** on the aforementioned cou
 1. Make a copy of the [.env.example](.env.example) file and call it .env, and enter your database configuration data.
 1. Create routes, controllers, views, models, middleware etc.
 
+## Build This Framework From Scratch
+
 Signup for the course [here](https://davehollingworth.com/go/phpmvc/) and understand how this framework is built from scratch, putting it all together step by step.
