@@ -2,7 +2,7 @@
 
 This is a simple MVC framework for building web applications in PHP. It's free and [open-source](LICENSE).
 
-It was created for the [Write PHP Like a Pro: Build an MVC Framework from Scratch](https://davehollingworth.com/go/phpmvc/) course.
+It was created for the [Write PHP Like a Pro: Build an MVC Framework from Scratch](https://davehollingworth.com/courses/php-mvc/) course.
 
 That course explains how the framework is put together, building it step-by-step, from scratch. If you've taken the course, then you'll already know how to use it.
 
@@ -20,4 +20,4 @@ This framework was developed as a **teaching example** on the aforementioned cou
 
 ## Build This Framework From Scratch
 
-Signup for the course [here](https://davehollingworth.com/go/phpmvc/) and understand how this framework is built from scratch, putting it all together step by step.
+Signup for the course [here](https://davehollingworth.com/courses/phpmvc/) and understand how this framework is built from scratch, putting it all together step by step.
